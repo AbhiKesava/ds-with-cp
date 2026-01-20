@@ -1,63 +1,82 @@
-class Node
-{
-    int data;
-    Node next;
-    Node(int a)
-    {
-        data=a;
-        next=null;
+class Stack {
+    int[] arr;
+    int top;
+
+    Stack(int a) {
+        arr = new int[a];
+        top = -1;
+    }
+// push/add/append
+    public void append(int a) {
+        if (top == arr.length-1) {
+            System.out.println("Stack will overflow");
+            return;
+        }
+        arr[++top] = a;
+    }
+// remove top or pop
+    public void pop() {
+        if (top == -1) {
+            System.out.println( "Stack is empty");
+            return;
+        }
+        arr[top] = 0;
+        top--;
+    }
+     public void currstateStack(){
+        System.out.println("top is at "+ top);
+        System.out.print("[");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+",");
+        }
+        System.out.println("]");
+        
+        return;
+        
     }
     
-    // 
-    public void getData(){
-        
-        System.out.println(data);
-        
+    public boolean isEmpty(){
+        return top==-1;
+    }
+    
+    public int peek(){
+        if(top==-1){
+            System.out.println("there is no peek for this stack because it is empty");
+            return -1;
+        }
+        return arr[top];
     }
 }
+
 class Main {
     public static void main(String[] args) {
-        System.out.println("varshh");
+        Stack s = new Stack(4);
+        s.currstateStack();
+        System.out.println("is stack empty "+s.isEmpty());
+        System.out.println("peek element of stack "+s.peek());
+        s.append(50);
+        System.out.println("----After appending 50 -----");
+        s.currstateStack();
+        System.out.println("is stack empty "+s.isEmpty());
+        System.out.println("peek element of stack "+s.peek());
+        s.append(40);
+        System.out.println("----After appending 40 -----");
+        s.currstateStack();
+        System.out.println("peek element of stack "+s.peek());
+        s.append(30);
+        System.out.println("----After appending 30 -----");
+        s.currstateStack();
+        System.out.println("peek element of stack "+s.peek());
+        s.append(20);
+        System.out.println("----After appending 20 -----");
+        s.currstateStack();
+       
+        s.append(10);
+        System.out.println("----After appending 10 -----");
+        s.currstateStack();
         
-        Node a=new Node(10);
-        Node b=new Node(20);
-        Node c=new Node(30);
-        Node d=new Node(40);
-        Node e=new Node(50);
-        Node f=new Node(60);
-        
-        a.data=100;// updation
-        a.next=b;
-        b.next=c;
-        c.next=d;
-        d.next=e;
-        e.next=f;
-        f.next=a;
-        
-        
-        System.out.println(a.data);
-        System.out.println(a.next);
-        
-        System.out.println(b.data);
-        System.out.println(b.next);
-        
-        System.out.println(c.data);
-        System.out.println(c.next);
-        
-        System.out.println(d.data);
-        System.out.println(d.next);
-        
-        System.out.println(e.data);
-        System.out.println(e.next);
-        System.out.println(f.data);
-        System.out.println(f.next);
-        
-        
-        a.getData();
-        b.getData();
-         c.getData();
-          d.getData();
-           e.getData();
-           f.getData();
+        s.pop();
+         System.out.println("----After pop operation-----");
+        s.currstateStack();
     }
 }
